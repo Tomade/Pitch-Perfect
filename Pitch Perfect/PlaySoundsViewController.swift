@@ -10,7 +10,6 @@ import UIKit
 import AVFoundation
 
 class PlaySoundsViewController: UIViewController {
-
     var audioPlayer : AVAudioPlayer!
     var receivedAudio : RecordedAudio!
     var audioFile : AVAudioFile!
@@ -18,13 +17,6 @@ class PlaySoundsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-//        let bundle = NSBundle.mainBundle()
-//        let path = bundle.pathForResource("movie_quote", ofType: "mp3")
-//        let url = NSURL(fileURLWithPath: path!)
-//        audioPlayer = AVAudioPlayer(contentsOfURL: url, fileTypeHint: AVFileTypeMPEGLayer3, error: nil)
-//        audioPlayer.enableRate = true
-//        audioPlayer.prepareToPlay()
         audioEngine = AVAudioEngine()
         audioFile = AVAudioFile(forReading: receivedAudio.filePathUrl, error: nil)
     }
@@ -73,6 +65,7 @@ class PlaySoundsViewController: UIViewController {
         var pitchPlayer = AVAudioPlayerNode()
         var timePitch = AVAudioUnitTimePitch()
         timePitch.pitch = pitch
+        timePitch.rate = 1.5
         
         audioPlayer.stop()
         audioEngine.stop()
