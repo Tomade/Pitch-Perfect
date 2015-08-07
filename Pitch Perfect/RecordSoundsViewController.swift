@@ -14,9 +14,13 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     @IBOutlet weak var recording: UILabel!
     @IBOutlet weak var stopButton: UIButton!
     
+    @IBOutlet weak var testButton: UIButton!
+    var testState = false
+    
     var audioRecorder : AVAudioRecorder!
     var filePath : NSURL!
     var recordedAudio : RecordedAudio!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
