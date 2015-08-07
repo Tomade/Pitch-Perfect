@@ -10,24 +10,20 @@ import UIKit
 import AVFoundation
 
 class PlaySoundsViewController: UIViewController {
-    var audioPlayer : AVAudioPlayer!
-    var receivedAudio : RecordedAudio!
-    var audioFile : AVAudioFile!
-    var audioEngine : AVAudioEngine!
+    var receivedAudio: RecordedAudio!
+    var audioFile: AVAudioFile!
+    var audioEngine: AVAudioEngine!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        audioEngine = AVAudioEngine()
         audioFile = AVAudioFile(forReading: receivedAudio.filePathUrl, error: nil)
+        audioEngine = AVAudioEngine()
     }
 
     
     override func viewWillAppear(animated: Bool) {
         AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord, error: nil)
         AVAudioSession.sharedInstance().overrideOutputAudioPort(.Speaker, error: nil)
-        audioPlayer = AVAudioPlayer(contentsOfURL: receivedAudio.filePathUrl, fileTypeHint: AVFileTypeMPEGLayer3, error: nil)
-        audioPlayer.enableRate = true
-        audioPlayer.prepareToPlay()
     }
     
     
@@ -38,40 +34,39 @@ class PlaySoundsViewController: UIViewController {
     
 
     @IBAction func PlaySlow() {
-        audioPlayer.stop()
-        audioPlayer.rate = 0.5
-        audioPlayer.play()
+        playAudioWithVariablePitchAndRate(rate: 0.5)
     }
     
     
     @IBAction func PlayFast() {
-        audioPlayer.stop()
-        audioPlayer.rate = 1.5
-        audioPlayer.play()
+        playAudioWithVariablePitchAndRate(rate: 1.5)
     }
     
     
     @IBAction func playChipmunkAudio() {
-        playAudioWithVariablePitch(1000)
+        playAudioWithVariablePitchAndRate(pitch: 1000.0)
     }
     
     
     @IBAction func playDarthVaderAudio() {
-        playAudioWithVariablePitch(-1000)
+        playAudioWithVariablePitchAndRate(pitch: -1000.0)
     }
     
     
-    func playAudioWithVariablePitch(pitch : Float) {
-        var pitchPlayer = AVAudioPlayerNode()
-        var timePitch = AVAudioUnitTimePitch()
-        timePitch.pitch = pitch
-        timePitch.rate = 1.5
-        
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+    func playAudioWithVariablePitchAndRate(pitch: Float? = nil, rate: Float? = nil) {
+        StopPlay()
+        let pitchPlayer = AVAudioPlayerNode()
         audioEngine.attachNode(pitchPlayer)
+        
+        let timePitch = AVAudioUnitTimePitch()
+        if let pitch = pitch {
+            timePitch.pitch = pitch
+        }
+        if let rate = rate {
+            timePitch.rate = rate
+        }
         audioEngine.attachNode(timePitch)
+
         audioEngine.connect(pitchPlayer, to: timePitch, format: nil)
         audioEngine.connect(timePitch, to: audioEngine.outputNode, format: nil)
         
@@ -81,7 +76,6 @@ class PlaySoundsViewController: UIViewController {
     }
     
     @IBAction func StopPlay() {
-        audioPlayer.stop()
         audioEngine.stop()
         audioEngine.reset()
     }
@@ -97,5 +91,5 @@ class PlaySoundsViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
