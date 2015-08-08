@@ -220,24 +220,24 @@
                                 <exclude reference="QGz-r9-k0d"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="0F9-UA-PDA"/>
-                                <exclude reference="B3n-dT-DRN"/>
-                                <exclude reference="aT3-lC-mQL"/>
-                                <exclude reference="q9l-tW-q65"/>
-                                <exclude reference="DN4-LF-NMg"/>
-                                <exclude reference="OgU-fQ-hnq"/>
+                                <exclude reference="WMP-1n-V6k"/>
                                 <exclude reference="BnI-sc-s7f"/>
                                 <exclude reference="S2g-QL-UYr"/>
                                 <exclude reference="atk-R1-gec"/>
+                                <exclude reference="DN4-LF-NMg"/>
+                                <exclude reference="OgU-fQ-hnq"/>
+                                <exclude reference="0F9-UA-PDA"/>
+                                <exclude reference="B3n-dT-DRN"/>
+                                <exclude reference="NvS-9G-v79"/>
                                 <exclude reference="I0f-19-1d8"/>
                                 <exclude reference="rrR-wE-vtw"/>
                                 <exclude reference="922-ZY-zjh"/>
                                 <exclude reference="HkB-eu-nwv"/>
                                 <exclude reference="XGU-CC-vt0"/>
                                 <exclude reference="lik-c8-mRZ"/>
-                                <exclude reference="NvS-9G-v79"/>
+                                <exclude reference="aT3-lC-mQL"/>
+                                <exclude reference="q9l-tW-q65"/>
                                 <exclude reference="5xg-hc-3T8"/>
-                                <exclude reference="WMP-1n-V6k"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -252,24 +252,24 @@
                                 <include reference="QGz-r9-k0d"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="0F9-UA-PDA"/>
-                                <include reference="B3n-dT-DRN"/>
-                                <include reference="aT3-lC-mQL"/>
-                                <include reference="q9l-tW-q65"/>
-                                <include reference="DN4-LF-NMg"/>
-                                <include reference="OgU-fQ-hnq"/>
+                                <include reference="WMP-1n-V6k"/>
                                 <exclude reference="BnI-sc-s7f"/>
                                 <include reference="S2g-QL-UYr"/>
                                 <include reference="atk-R1-gec"/>
+                                <include reference="DN4-LF-NMg"/>
+                                <include reference="OgU-fQ-hnq"/>
+                                <include reference="0F9-UA-PDA"/>
+                                <include reference="B3n-dT-DRN"/>
+                                <include reference="NvS-9G-v79"/>
                                 <include reference="I0f-19-1d8"/>
                                 <include reference="rrR-wE-vtw"/>
                                 <include reference="922-ZY-zjh"/>
                                 <include reference="HkB-eu-nwv"/>
                                 <include reference="XGU-CC-vt0"/>
                                 <exclude reference="lik-c8-mRZ"/>
-                                <include reference="NvS-9G-v79"/>
+                                <include reference="aT3-lC-mQL"/>
+                                <include reference="q9l-tW-q65"/>
                                 <include reference="5xg-hc-3T8"/>
-                                <include reference="WMP-1n-V6k"/>
                             </mask>
                         </variation>
                     </view>

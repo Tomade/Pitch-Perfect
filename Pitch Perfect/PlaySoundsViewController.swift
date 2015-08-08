@@ -8,16 +8,23 @@
 
 /*
 This module sets up an AVAudioEngine unit chain as such:
- AVAudioPlayerNode -> AVAudioUnitTimePitch -> AVAudioUnitReverb -> AVAudioUnitDistortion
+ AVAudioPlayerNode -> AVAudioUnitTimePitch -> AVAudioUnitReverb
 It then connects the end of the chain to the engine's output node.
 
 The time pitch unit is used to control playback rate and pitch, implementing the effects
-corresponding to the four primary picture buttons.
-The "special effects" units are used for additional filtering, and they are controlled by a
-series of toggle buttons below the four picture buttons.  If one of these units is not used,
-its bypass property is set to true.  Depending on the particular effect selected, they are
-made active and configured appropriately.
+corresponding to the four primary picture buttons.  The actions for each button just call
+a common playback utility function taking two optional parameters for pitch and rate.
 
+Three additional system buttons placed underneath the picture buttons control the reverb
+effect, with each button corresponding to a different preset. The state of these buttons
+can be toggled with a touch, and they also act as a sort of radio button group (ie,
+selecting one automatically deselects the other two).
+Each button selects a different reverb preset (small/medium/large room).
+
+NOTE: to disable reverb completely (that is, when no preset button is selected) we set
+the wetDryMix in our AVAudioUnitReverb to 0.  Setting the bypass property to true does
+NOT work for reverb units, it silences everything instead.  This seems to be a bug in 
+Core Audio.
 */
 
 import UIKit
@@ -30,10 +37,7 @@ class PlaySoundsViewController: UIViewController {
     var player: AVAudioPlayerNode!
     var timePitchUnit: AVAudioUnitTimePitch!
     var reverbUnit: AVAudioUnitReverb!
-    var distortionUnit: AVAudioUnitDistortion!
-    
     var error: NSError?
-
 
     @IBOutlet var reverbButtons: [UIButton]!
     
@@ -48,21 +52,14 @@ class PlaySoundsViewController: UIViewController {
         reverbUnit.loadFactoryPreset(.Cathedral)
         reverbUnit.wetDryMix = 0
         reverbUnit.bypass = false
-
-        distortionUnit = AVAudioUnitDistortion()
-        distortionUnit.loadFactoryPreset(.SpeechRadioTower)
-        distortionUnit.wetDryMix = 20
-        distortionUnit.bypass = true
         
         audioEngine.attachNode(player)
         audioEngine.attachNode(timePitchUnit)
         audioEngine.attachNode(reverbUnit)
-        audioEngine.attachNode(distortionUnit)
         
         audioEngine.connect(player, to: timePitchUnit, format: nil)
         audioEngine.connect(timePitchUnit, to: reverbUnit, format: nil)
-        audioEngine.connect(reverbUnit, to: distortionUnit, format: nil)
-        audioEngine.connect(distortionUnit, to: audioEngine.outputNode, format: nil)
+        audioEngine.connect(reverbUnit, to: audioEngine.outputNode, format: nil)
         audioEngine.startAndReturnError(&error)
 
         if let error = error {
