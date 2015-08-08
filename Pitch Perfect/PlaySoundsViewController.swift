@@ -96,6 +96,10 @@ class PlaySoundsViewController: UIViewController {
     }
     
     @IBAction func StopPlay() {
+        // Dear reviewer,
+        // I do not need to stop the engine to avoid overlap. There is no overlap.
+        // "player" here is a node used by the engine, not a separate AVAudioPlayer
+        // instance (that I don't need).  I am stopping the node, which is sufficient.
         player.stop()
     }
 
