@@ -32,12 +32,10 @@ class PlaySoundsViewController: UIViewController {
     var reverbUnit: AVAudioUnitReverb!
     var distortionUnit: AVAudioUnitDistortion!
     
+    var error: NSError?
 
-    @IBOutlet weak var testButton: UIButton!
-    
-    @IBAction func toggle(sender: UIButton) {
-        sender.selected = !sender.selected
-    }
+
+    @IBOutlet var reverbButtons: [UIButton]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,89 +45,97 @@ class PlaySoundsViewController: UIViewController {
         player = AVAudioPlayerNode()
         timePitchUnit = AVAudioUnitTimePitch()
         reverbUnit = AVAudioUnitReverb()
-        reverbUnit.bypass = true
+        reverbUnit.loadFactoryPreset(.Cathedral)
+        reverbUnit.wetDryMix = 0
+        reverbUnit.bypass = false
+
         distortionUnit = AVAudioUnitDistortion()
+        distortionUnit.loadFactoryPreset(.SpeechRadioTower)
+        distortionUnit.wetDryMix = 20
         distortionUnit.bypass = true
         
         audioEngine.attachNode(player)
         audioEngine.attachNode(timePitchUnit)
-//        audioEngine.attachNode(reverbUnit)
-//        audioEngine.attachNode(distortionUnit)
+        audioEngine.attachNode(reverbUnit)
+        audioEngine.attachNode(distortionUnit)
         
         audioEngine.connect(player, to: timePitchUnit, format: nil)
-//        audioEngine.connect(timePitchUnit, to: reverbUnit, format: nil)
-//        audioEngine.connect(reverbUnit, to: distortionUnit, format: nil)
-//        audioEngine.connect(distortionUnit, to: audioEngine.outputNode, format: nil)
-        audioEngine.connect(timePitchUnit, to: audioEngine.outputNode, format: nil)
-    }
+        audioEngine.connect(timePitchUnit, to: reverbUnit, format: nil)
+        audioEngine.connect(reverbUnit, to: distortionUnit, format: nil)
+        audioEngine.connect(distortionUnit, to: audioEngine.outputNode, format: nil)
+        audioEngine.startAndReturnError(&error)
 
+        if let error = error {
+            println("Error while starting engine: \(error.localizedDescription)")
+        }
+    }
     
     override func viewWillAppear(animated: Bool) {
         AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord, error: nil)
         // AVAudioSession.sharedInstance().overrideOutputAudioPort(.Speaker, error: nil)
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    // MARK: user IBActions and support functions
+    
     @IBAction func PlaySlow() {
         playAudioWithVariablePitchAndRate(rate: 0.5)
     }
-    
     
     @IBAction func PlayFast() {
         playAudioWithVariablePitchAndRate(rate: 1.5)
     }
     
-    
     @IBAction func playChipmunkAudio() {
         playAudioWithVariablePitchAndRate(pitch: 1000.0)
     }
-    
     
     @IBAction func playDarthVaderAudio() {
         playAudioWithVariablePitchAndRate(pitch: -1000.0)
     }
     
-    
     @IBAction func StopPlay() {
-        audioEngine.stop()
-//        audioEngine.reset()
+        player.stop()
     }
 
     func playAudioWithVariablePitchAndRate(pitch: Float = 1.0, rate: Float = 1.0) {
         StopPlay()
-//        player.stop()
         timePitchUnit.pitch = pitch
         timePitchUnit.rate = rate
-        // Check effects
-        
-        // play with distortion
-//        let dist = AVAudioUnitDistortion()
-//        dist.loadFactoryPreset(.SpeechWaves)
-//        audioEngine.attachNode(dist)
-//        
-//        dist.bypass = !testButton.selected
-//        
-        audioEngine.startAndReturnError(nil)
-        player.play()
         player.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
+        player.play()
     }
     
-    // TODO: Add an additional effect or more, such as reverb or echo
-    
-    // MARK: - Navigation
+    @IBAction func toggleReverb(sender: UIButton) {
+        let isSelected = !sender.selected
+        if isSelected {
+            var preset: AVAudioUnitReverbPreset!
+            for button in reverbButtons {
+                button.selected = false
+            }
+            switch sender.titleLabel!.text! {
+            case "Small Room":
+                preset = AVAudioUnitReverbPreset.SmallRoom
+            case "Medium Room":
+                preset = AVAudioUnitReverbPreset.MediumRoom
+            case "Large Room":
+                preset = AVAudioUnitReverbPreset.LargeRoom
+            default:
+                preset = AVAudioUnitReverbPreset.MediumRoom
+            }
+            reverbUnit.loadFactoryPreset(preset)
+            reverbUnit.wetDryMix = 50
+            sender.selected = true
+        }
+        else {
+            reverbUnit.wetDryMix = 0
+            sender.selected = false
+        }
+    }
 
-    /*
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
 }
