@@ -15,7 +15,6 @@
 		33D239161B6093C4007305C3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33D239141B6093C4007305C3 /* LaunchScreen.xib */; };
 		33D239221B6093C5007305C3 /* Pitch_PerfectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D239211B6093C5007305C3 /* Pitch_PerfectTests.swift */; };
 		33E874FC1B71CB6F00E428BA /* RecordedAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E874FB1B71CB6F00E428BA /* RecordedAudio.swift */; };
-		33FB91BA1B75D88300E36CBD /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 33FB91B91B75D88300E36CBD /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		33B138C91B70A703004EA3DC /* PlaySoundsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaySoundsViewController.swift; sourceTree = "<group>"; };
+		33B72A931B75DE1100429F40 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = "Pitch Perfect.xcodeproj/../README.md"; sourceTree = SOURCE_ROOT; };
 		33D239061B6093C4007305C3 /* Pitch Perfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pitch Perfect.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33D2390A1B6093C4007305C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33D2390B1B6093C4007305C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,7 +41,6 @@
 		33D239201B6093C5007305C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33D239211B6093C5007305C3 /* Pitch_PerfectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pitch_PerfectTests.swift; sourceTree = "<group>"; };
 		33E874FB1B71CB6F00E428BA /* RecordedAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordedAudio.swift; sourceTree = "<group>"; };
-		33FB91B91B75D88300E36CBD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +97,6 @@
 		33D239091B6093C4007305C3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				33FB91B91B75D88300E36CBD /* README.md */,
 				33D2390A1B6093C4007305C3 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -116,6 +114,7 @@
 		33D2391F1B6093C5007305C3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				33B72A931B75DE1100429F40 /* README.md */,
 				33D239201B6093C5007305C3 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -224,7 +223,6 @@
 			files = (
 				33E874FC1B71CB6F00E428BA /* RecordedAudio.swift in Sources */,
 				33D2390E1B6093C4007305C3 /* RecordSoundsViewController.swift in Sources */,
-				33FB91BA1B75D88300E36CBD /* README.md in Sources */,
 				33B138CA1B70A703004EA3DC /* PlaySoundsViewController.swift in Sources */,
 				33D2390C1B6093C4007305C3 /* AppDelegate.swift in Sources */,
 			);
