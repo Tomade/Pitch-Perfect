@@ -113,7 +113,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="PlaySlow" destination="byM-S5-un4" eventType="touchUpInside" id="gyW-oa-09d"/>
+                                    <action selector="playSlow" destination="byM-S5-un4" eventType="touchUpInside" id="3Up-EN-Yxw"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0tY-lM-upv" userLabel="FastButton">
@@ -122,7 +122,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="PlayFast" destination="byM-S5-un4" eventType="touchUpInside" id="nO7-ts-cGS"/>
+                                    <action selector="playFast" destination="byM-S5-un4" eventType="touchUpInside" id="yZR-UC-n20"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zHn-fU-t5Y" userLabel="StopButton">
@@ -131,7 +131,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="StopPlay" destination="byM-S5-un4" eventType="touchUpInside" id="i0k-FP-z9s"/>
+                                    <action selector="stopPlay" destination="byM-S5-un4" eventType="touchUpInside" id="IJC-hz-bAX"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxw-yn-CGN" userLabel="ChipmunkButton">

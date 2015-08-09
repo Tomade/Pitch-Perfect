@@ -69,7 +69,6 @@ class PlaySoundsViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord, error: nil)
-        // AVAudioSession.sharedInstance().overrideOutputAudioPort(.Speaker, error: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -79,11 +78,11 @@ class PlaySoundsViewController: UIViewController {
     
     // MARK: user IBActions and support functions
     
-    @IBAction func PlaySlow() {
+    @IBAction func playSlow() {
         playAudioWithVariablePitchAndRate(rate: 0.5)
     }
     
-    @IBAction func PlayFast() {
+    @IBAction func playFast() {
         playAudioWithVariablePitchAndRate(rate: 1.5)
     }
     
@@ -95,7 +94,7 @@ class PlaySoundsViewController: UIViewController {
         playAudioWithVariablePitchAndRate(pitch: -1000.0)
     }
     
-    @IBAction func StopPlay() {
+    @IBAction func stopPlay() {
         // Dear reviewer,
         // I do not need to stop the engine to avoid overlap. There is no overlap.
         // "player" here is a node used by the engine, not a separate AVAudioPlayer
@@ -104,7 +103,7 @@ class PlaySoundsViewController: UIViewController {
     }
 
     func playAudioWithVariablePitchAndRate(pitch: Float = 1.0, rate: Float = 1.0) {
-        StopPlay()
+        stopPlay()
         timePitchUnit.pitch = pitch
         timePitchUnit.rate = rate
         player.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
